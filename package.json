@@ -1,0 +1,21 @@
+{
+  "name": "doc-generator",
+  "version": "1.0.0",
+  "description": "Generate OpenAPI documentation from serverless.yml and handlers JSdocs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "OpenApi",
+    "Serverless",
+    "JSDocs",
+    "Swagger"
+  ],
+  "author": "Kevin 'Nakasar' Thizy",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.12.0",
+    "lodash": "^4.17.11"
+  }
+}
