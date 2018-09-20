@@ -19,12 +19,11 @@ async function generate({ folder }) {
         const handlers = getRoutes(doc);
 
         const docs = await loadDocsFromHandlers(apiPath, handlers);
-
-        console.log(docs);
         
-        const routes = groupByRoute(handlers);
+        const routes = groupByRoute(handlers, docs);
 
         const yml = createDoc(routes);
+
         saveApiDocFile(yml);
     } catch (e) {
         console.log(e);
@@ -91,23 +90,20 @@ async function loadDocsFromHandlers(apiPath, handlers) {
     return _.fromPairs(rawDocs); 
 }
 
-function groupByRoute(handlers) {
+function groupByRoute(handlers, docs) {
     const routes = {};
 
     handlers.forEach(handler => {
         handler.routes.forEach(route => {
             if (!routes[route.path]) routes[route.path] = {};
-            routes[route.path][route.method] = {
-                description: 'No description',
-                responses: {
-                    default: {
-                        '$ref': "#/components/responses/ErrorResponse",
-                    },
-                    "2XX": {
-                        '$ref': "#/components/responses/GeneralResponse",
-                    }
-                }
-            };
+            
+            const routeDoc = ((docs[handler.handler] || {})[route.method]) || {};
+            routeDoc.description = routeDoc.description || "No description";
+            routeDoc.responses = routeDoc.responses || {};
+            routeDoc.responses.default = routeDoc.responses.default || { '$ref': "#/components/responses/ErrorResponse" };
+            routeDoc.responses['2XX'] = routeDoc.responses['2XX'] || { '$ref': "#/components/responses/GeneralResponse" };
+
+            routes[route.path][route.method] = routeDoc;
         });
     });
 
