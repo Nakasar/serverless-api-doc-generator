@@ -14,6 +14,9 @@
   ],
   "author": "Kevin 'Nakasar' Thizy",
   "license": "MIT",
+  "bin": {
+    "generate-doc": "./index.js"
+  },
   "dependencies": {
     "commander": "^2.18.0",
     "js-yaml": "^3.12.0",
