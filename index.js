@@ -19,8 +19,8 @@ if (!program.out) {
     throw new Error('--out [out-folder] in required.');
 }
 
-const folder = path.join(__dirname, program.in);
-const out = path.join(__dirname, program.out);
+const folder = path.join(process.cwd(), program.in);
+const out = path.join(process.cwd(), program.out);
 
 generator.generate({
     folder,
