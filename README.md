@@ -30,3 +30,5 @@ module.exports.get = async (event, context) => {
 
 };
 ```
+
+The generator will automatically add a default and a '2XX' generic response if they are not defined in the @apidoc description.
