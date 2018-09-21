@@ -8,7 +8,7 @@
 path/to/api/folder must contain the serverless.yml definition.
 
 # DOCUMENT ROUTES
-```
+```javascript
 /**
  * Function description
  * @param {Object} event 
