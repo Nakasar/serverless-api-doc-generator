@@ -1,6 +1,6 @@
 {
   "name": "doc-generator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Generate OpenAPI documentation from serverless.yml and handlers JSdocs.",
   "main": "index.js",
   "scripts": {
